@@ -12,6 +12,7 @@ function addBookToLibrary() {
   const title = document.getElementById("book-title").value;
   const noPages = document.getElementById("book-no-pages").value;
   const read = document.getElementById("book-read").value;
+  console.log(read);
 
   const book = new Book(author, title, noPages, read);
 
@@ -32,10 +33,12 @@ function render() {
   booksContainer.innerHTML = "";
   myLibrary.forEach(book => {
     let card = document.createElement('div');
+    const read = book.read == "on" ? "Yes" : "No";
+
     card.className = "card mt-3 mb-3";
     card.innerHTML = `<div class='card-body'><h5 class='card-title'>${book.title}</h5> <p class="card-text">Written by: ${book.author}</p>
     <p class="card-text">Pages: ${book.noPages}</p>
-    <p class="card-text">Read: ${book.read}</p></div>`;
+    <p class="card-text">Read: ${read}</p></div>`;
     booksContainer.appendChild(card);
   });
 }
