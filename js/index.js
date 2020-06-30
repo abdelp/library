@@ -1,5 +1,3 @@
-
-
 function Book(author, title, noPages, read) {
   this.author = author;
   this.title = title;
@@ -7,7 +5,6 @@ function Book(author, title, noPages, read) {
   this.read = read;
 }
 
-const myBook = new Book("test","test",100,"on");
 let myLibrary = [];
 
 function addBookToLibrary() {
@@ -34,7 +31,7 @@ function removeBookFromLibrary(idx) {
 
     myLibrary = firstPart.concat(secondPart);
     localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
-  
+
     render();
   }
 }
@@ -43,7 +40,7 @@ function cleanForm() {
   document.getElementById("book-author").value = "";
   document.getElementById("book-title").value = "";
   document.getElementById("book-no-pages").value = "";
-  document.getElementById("book-read").value = "";
+  document.getElementById("book-read").checked = false;
 }
 
 function render() {
