@@ -49,7 +49,7 @@ function render() {
   const bookClass = book.read == "on" ? "btn btn-success" : "btn btn-danger";
 
   card.id = `book-${idx}`;
-  card.className = "card mt-3 mb-3";
+  card.className = "card mt-3 mb-3 col-sm-12 col-md-3";
   card.innerHTML = `<div class='card-body'><h5 class='card-title'>${book.title}</h5> <p class="card-text">Written by: ${book.author}</p>
   <p class="card-text">Pages: ${book.noPages}</p>
   <p class="card-text">Read: <button class="${bookClass}" onclick="changeReadStatus(this, ${idx})">${read}</button></p>
@@ -62,9 +62,10 @@ function render() {
 function changeReadStatus(el, idx) {
   let book = myLibrary[idx];
 
-  const bookClass = book.read == "on" ? "btn btn-success" : "btn btn-secondary";
-  const buttonContent = book.read == "on" ? "Yes" : "No";
   book.read = book.read == "on" ? "off" : "on";
+  const bookClass = book.read == "on" ? "btn btn-success" : "btn btn-danger";
+  const buttonContent = book.read == "on" ? "Yes" : "No";
+  
 
   el.className = bookClass;
   el.innerHTML = buttonContent;
