@@ -8,7 +8,7 @@ function Book(author, title, noPages, read) {
 }
 
 const myBook = new Book("test","test",100,"on");
-let myLibrary = [myBook,myBook,myBook,myBook];
+let myLibrary = [];
 
 function addBookToLibrary() {
   const author = document.getElementById("book-author").value;
@@ -19,6 +19,8 @@ function addBookToLibrary() {
   const book = new Book(author, title, noPages, read);
 
   myLibrary.push(book);
+  localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
+
   cleanForm();
   render();
 }
@@ -31,7 +33,8 @@ function removeBookFromLibrary(idx) {
     const secondPart = myLibrary.slice(idx + 1, myLibrary.length);
 
     myLibrary = firstPart.concat(secondPart);
-
+    localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
+  
     render();
   }
 }
@@ -44,6 +47,7 @@ function cleanForm() {
 }
 
 function render() {
+  const myLibrary = JSON.parse(localStorage.getItem("myLibrary"));
   let booksContainer = document.getElementById("books-container");
   booksContainer.innerHTML = "";
   myLibrary.forEach((book, idx) => {
