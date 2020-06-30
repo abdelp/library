@@ -1,4 +1,4 @@
-let myLibrary = [];
+
 
 function Book(author, title, noPages, read) {
   this.author = author;
@@ -6,6 +6,9 @@ function Book(author, title, noPages, read) {
   this.noPages = noPages;
   this.read = read;
 }
+
+const myBook = new Book("test","test",100,"on");
+let myLibrary = [myBook,myBook,myBook,myBook];
 
 function addBookToLibrary() {
   const author = document.getElementById("book-author").value;
@@ -49,10 +52,10 @@ function render() {
   const bookClass = book.read == "on" ? "btn btn-success" : "btn btn-danger";
 
   card.id = `book-${idx}`;
-  card.className = "card mt-3 mb-3 col-sm-12 col-md-3";
-  card.innerHTML = `<div class='card-body'><h5 class='card-title'>${book.title}</h5> <p class="card-text">Written by: ${book.author}</p>
-  <p class="card-text">Pages: ${book.noPages}</p>
-  <p class="card-text">Read: <button class="${bookClass}" onclick="changeReadStatus(this, ${idx})">${read}</button></p>
+  card.className = "card mt-3 mb-3 col-xs-12 col-sm-12 col-md-6 col-lg-3";
+  card.innerHTML = `<div class='card-body'><h5 class='card-title'>${book.title}</h5> <p class="card-text"><span class="font-weight-bold text-secondary">Written by:</span> ${book.author}</p>
+  <p class="card-text"><span class="font-weight-bold text-secondary">Pages:</span> ${book.noPages}</p>
+  <p class="card-text"><span class="font-weight-bold text-secondary">Read:</span> <button class="${bookClass}" onclick="changeReadStatus(this, ${idx})">${read}</button></p>
   <div class="btn btn-danger" onclick="removeBookFromLibrary(${idx})" data-confirm="Are you sure?">Remove</div>
   </div>`;
   booksContainer.appendChild(card);
