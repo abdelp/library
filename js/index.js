@@ -44,18 +44,30 @@ function render() {
   let booksContainer = document.getElementById("books-container");
   booksContainer.innerHTML = "";
   myLibrary.forEach((book, idx) => {
-    let card = document.createElement('div');
-    const read = book.read == "on" ? "Yes" : "No";
+  let card = document.createElement('div');
+  const read = book.read == "on" ? "Yes" : "No";
+  const bookClass = book.read == "on" ? "btn btn-success" : "btn btn-danger";
 
-    card.id = `book-${idx}`;
-    card.className = "card mt-3 mb-3";
-    card.innerHTML = `<div class='card-body'><h5 class='card-title'>${book.title}</h5> <p class="card-text">Written by: ${book.author}</p>
-    <p class="card-text">Pages: ${book.noPages}</p>
-    <p class="card-text">Read: ${read}</p>
-    <div class="btn btn-danger" onclick="removeBookFromLibrary(${idx})" data-confirm="Are you sure?">Remove</div>
-    </div>`;
-    booksContainer.appendChild(card);
+  card.id = `book-${idx}`;
+  card.className = "card mt-3 mb-3";
+  card.innerHTML = `<div class='card-body'><h5 class='card-title'>${book.title}</h5> <p class="card-text">Written by: ${book.author}</p>
+  <p class="card-text">Pages: ${book.noPages}</p>
+  <p class="card-text">Read: <button class="${bookClass}" onclick="changeReadStatus(this, ${idx})">${read}</button></p>
+  <div class="btn btn-danger" onclick="removeBookFromLibrary(${idx})" data-confirm="Are you sure?">Remove</div>
+  </div>`;
+  booksContainer.appendChild(card);
   });
+}
+
+function changeReadStatus(el, idx) {
+  let book = myLibrary[idx];
+
+  const bookClass = book.read == "on" ? "btn btn-success" : "btn btn-secondary";
+  const buttonContent = book.read == "on" ? "Yes" : "No";
+  book.read = book.read == "on" ? "off" : "on";
+
+  el.className = bookClass;
+  el.innerHTML = buttonContent;
 }
 
 window.onload = function() {
