@@ -16,6 +16,7 @@ function cleanForm() {
 
 function render() {
   myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
+  console.log(myLibrary);
   const booksContainer = document.getElementById('books-container');
   booksContainer.innerHTML = '';
   myLibrary.forEach((book, idx) => {
@@ -58,8 +59,6 @@ function removeBookFromLibrary(idx) { // eslint-disable-line no-unused-vars
 
     myLibrary = firstPart.concat(secondPart);
     localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
-
-    // alert('Book removed successfully');
 
     render();
   }
